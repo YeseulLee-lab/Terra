@@ -15,11 +15,11 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Platform
+  - BackGround
+  - ForeGround
+  - Player
+  - Camera
   - 
   - 
   - 
