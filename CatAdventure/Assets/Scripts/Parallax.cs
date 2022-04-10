@@ -1,23 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    public Transform cam;
-    public float relativeMove = .3f;
-    public bool lockY = false;
+    [SerializeField] float multiplier = 0.0f;
+    [SerializeField] bool horizontalOnly = true;
 
-    void Update()
+    private Transform cameraTransform;
+
+    private Vector3 startCameraPos;
+    private Vector3 startPos;
+
+    void Start()
     {
-
-        if(lockY)
-        {
-            transform.position = new Vector2(cam.position.x * relativeMove, transform.position.y);
-        }
-        else
-        {
-            transform.position = new Vector2(cam.position.x * relativeMove, cam.position.y * relativeMove);
-        }
+        cameraTransform = Camera.main.transform;
+        startCameraPos = cameraTransform.position;
+        startPos = transform.position;
     }
+
+
+    private void LateUpdate()
+    {
+        var position = startPos;
+        if (horizontalOnly)
+            position.x += multiplier * (cameraTransform.position.x - startCameraPos.x);
+        else
+            position += multiplier * (cameraTransform.position - startCameraPos);
+
+        transform.position = position;
+    }
+
 }
