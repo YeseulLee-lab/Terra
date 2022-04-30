@@ -331,8 +331,11 @@
 -r:"Library/Bee/artifacts/500b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/500b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Scripts/CameraFollow.cs"
+"Assets/Scripts/FadingPlatform.cs"
+"Assets/Scripts/MovingPlatform.cs"
 "Assets/Scripts/Parallax.cs"
 "Assets/Scripts/PlayerMove.cs"
+"Assets/Scripts/Respawn.cs"
 -langversion:8.0
 
 /deterministic
