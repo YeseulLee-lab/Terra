@@ -34,7 +34,7 @@ public class FadingPlatform : MonoBehaviour
             boxCol2D.enabled = false;            
             spriteRend.enabled = false;
             isFading = false;       
-            StartCoroutine(nameof(CoFadeInPlatform));
+            //StartCoroutine(nameof(CoFadeInPlatform));
         }
     }
 
