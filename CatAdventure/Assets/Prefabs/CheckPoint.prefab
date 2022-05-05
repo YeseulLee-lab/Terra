@@ -70,4 +70,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7722bc88f457da748997cb43c472c274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallDetector: {fileID: 0}
+  fallDetector: {fileID: 3353042454767829135, guid: 891ca6de358034c49a29a058563cc484,
+    type: 3}
