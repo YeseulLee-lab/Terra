@@ -23,6 +23,7 @@ public class FadingPlatform : MonoBehaviour
     }
     private void Update()
     {
+
         if(isFading)
         {            
             gameObject.GetComponent<SpriteRenderer>().material.color = 
@@ -34,17 +35,17 @@ public class FadingPlatform : MonoBehaviour
             boxCol2D.enabled = false;            
             spriteRend.enabled = false;
             isFading = false;       
-            //StartCoroutine(nameof(CoFadeInPlatform));
+            //StartCoroutine(nameof(CoShowPlatform));
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collision.gameObject.name == "player")
+        if(collider.gameObject.CompareTag("Player"))
             isFading = true;
     }
 
-    public IEnumerator CoFadeInPlatform()
+    public IEnumerator CoShowPlatform()
     {
         yield return new WaitForSeconds(showPlatformTime);
         gameObject.GetComponent<SpriteRenderer>().material.color = new Color(1f, 1f, 1f, 1f);

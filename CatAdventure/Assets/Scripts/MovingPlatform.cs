@@ -4,17 +4,30 @@ using UnityEngine;
 
 public class MovingPlatform : MonoBehaviour
 {
-    [SerializeField] private GameObject[] wayPoints;
+    [SerializeField] private GameObject movingPlatformParent;
+    [SerializeField] private List<GameObject> wayPoints;
+    [SerializeField] private float speed = 2f;
     private int currentWayPointIndex = 0;
 
-    [SerializeField] private float speed = 2f;
+    
+
+    private void Start()
+    {
+        movingPlatformParent = gameObject.transform.parent.gameObject;
+
+        int childCount = movingPlatformParent.transform.childCount;
+        for(int i = 1; i<childCount;i++)
+        {
+            wayPoints.Add(movingPlatformParent.transform.GetChild(i).gameObject);
+        }
+    }
 
     private void Update()
     {
         if(Vector2.Distance(wayPoints[currentWayPointIndex].transform.position, transform.position) < .1f)
         {
             currentWayPointIndex++;
-            if(currentWayPointIndex >= wayPoints.Length)
+            if(currentWayPointIndex >= wayPoints.Count)
             {
                 currentWayPointIndex = 0;
                 
