@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3871667802021838514}
   m_Layer: 10
   m_Name: FadingPlatform
-  m_TagString: Untagged
+  m_TagString: FadingPlatform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

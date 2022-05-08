@@ -7,6 +7,12 @@ public class FallDetector : MonoBehaviour
     public Life life;
     [SerializeField] private Transform playerObject;
     [SerializeField] private Transform checkPoint;
+    [SerializeField] private GameObject[] fadingPlatforms;
+
+    private void Start()
+    {
+        fadingPlatforms = GameObject.FindGameObjectsWithTag("FadingPlatform");
+    }
 
     public Transform CheckPoint
     {
@@ -21,7 +27,12 @@ public class FallDetector : MonoBehaviour
             playerObject.position = checkPoint.position;
             life.LifeNum--;
             life.ActiveLife();
-        }
-            
+
+            for (int i = 0; i < fadingPlatforms.Length; i++)
+            {
+                FadingPlatform fadingPlatformItem = fadingPlatforms[i].GetComponent<FadingPlatform>();
+                fadingPlatformItem.ShowFadingPlatform();
+            }
+        }            
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CheckPoint
   - PlayerBottom
+  - FadingPlatform
   layers:
   - Default
   - TransparentFX

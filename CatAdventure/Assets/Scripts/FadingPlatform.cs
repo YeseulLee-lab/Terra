@@ -23,7 +23,6 @@ public class FadingPlatform : MonoBehaviour
     }
     private void Update()
     {
-
         if(isFading)
         {            
             gameObject.GetComponent<SpriteRenderer>().material.color = 
@@ -35,7 +34,6 @@ public class FadingPlatform : MonoBehaviour
             boxCol2D.enabled = false;            
             spriteRend.enabled = false;
             isFading = false;       
-            //StartCoroutine(nameof(CoShowPlatform));
         }
     }
 
@@ -45,9 +43,8 @@ public class FadingPlatform : MonoBehaviour
             isFading = true;
     }
 
-    public IEnumerator CoShowPlatform()
+    public void ShowFadingPlatform()
     {
-        yield return new WaitForSeconds(showPlatformTime);
         gameObject.GetComponent<SpriteRenderer>().material.color = new Color(1f, 1f, 1f, 1f);
         boxCol2D.enabled = true;
         spriteRend.enabled = true;

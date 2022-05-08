@@ -5,21 +5,25 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     public float maxSpeed;
-    public float jumpPower;    
-
-    Rigidbody2D rigid;
-    
+    public float jumpPower;
     [SerializeField] private LayerMask platformLayerMask = default;
+    public Spike spike;
+    public bool isHurting = false;
+
+    Rigidbody2D rigid;    
 
     private CapsuleCollider2D capsuleCollider2D;
+    private SpriteRenderer spriteRenderer;
+    private Animator animator;
+    
 
-    // Start is called before the first frame update
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
         capsuleCollider2D = GetComponent<CapsuleCollider2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
-
 
     void Update()
     {
@@ -32,16 +36,18 @@ public class PlayerMove : MonoBehaviour
         if(Input.GetButtonUp("Horizontal"))
         {
             rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);
-            // rigid.isKinematic = true;
-            // if(IsGrounded())
-            //     rigid.velocity = Vector2.zero;
         }
-        // else if(Input.GetButtonDown("Horizontal"))
-        // {
-        //     rigid.isKinematic = false;
-        // }
+
+        if(Input.GetButtonDown("Horizontal"))
+            spriteRenderer.flipX = !(Input.GetAxisRaw("Horizontal") == -1);
+
+        if(isHurting)
+        {
+            spriteRenderer.material.color = new Color(1, 1, 1, 0.5f);
+            Invoke(nameof(CoBlinkingPlayer), 2f);
+        }
     }
-    // Update is called once per frame
+
     void FixedUpdate()
     {
         //Move By Key Control
@@ -57,6 +63,7 @@ public class PlayerMove : MonoBehaviour
         {
             rigid.velocity = new Vector2(maxSpeed*(-1), rigid.velocity.y);
         }
+             
     }
 
     private bool IsGrounded()
@@ -76,5 +83,11 @@ public class PlayerMove : MonoBehaviour
         Debug.DrawRay(capsuleCollider2D.bounds.center, Vector2.down * (capsuleCollider2D.bounds.extents.y + extraHeightText), rayColor);     
 
         return raycastHit.collider != null;
+    }
+
+    public void CoBlinkingPlayer()
+    {
+        spriteRenderer.material.color = new Color(1, 1, 1, 1);
+        isHurting = false;
     }
 }
