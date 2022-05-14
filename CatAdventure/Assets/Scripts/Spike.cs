@@ -4,30 +4,18 @@ using UnityEngine;
 
 public class Spike : MonoBehaviour
 {
-    public Life life;
-    private PlayerMove player;
-
-    private void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMove>();
-        
-    }
+    [SerializeField] private int damageAmount;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        PlayerMove player = collision.gameObject.GetComponent<PlayerMove>();
+        if(player != null)
         {
-            SpikeHurtsPlayer();
+            if(!player.isHurting)
+            {
+                Vector3 knockbackDir = (player.transform.position - transform.position).normalized;
+                player.DamageKnockBack(knockbackDir, 3f, damageAmount);
+            }            
         }
-    }
-
-    private void SpikeHurtsPlayer()
-    {
-        if(!player.isHurting)
-        {
-            life.LifeNum--;
-            life.ActiveLife();
-            player.isHurting = true;
-        }        
     }
 }

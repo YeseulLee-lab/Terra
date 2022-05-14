@@ -67,6 +67,9 @@
     <Compile Include="Assets\Scripts\Parallax.cs" />
     <Compile Include="Assets\Scripts\BackgroundLoop.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
+    <Compile Include="Assets\Scripts\HeartsHealthVisual.cs" />
+    <Compile Include="Assets\Scripts\HeartHealthSystem.cs" />
+    <Compile Include="Assets\Scripts\Item.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

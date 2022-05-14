@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    [SerializeField] private LayerMask platformLayerMask = default;
     public float maxSpeed;
     public float jumpPower;
-    [SerializeField] private LayerMask platformLayerMask = default;
-    public Spike spike;
     public bool isHurting = false;
 
     Rigidbody2D rigid;    
@@ -15,6 +14,7 @@ public class PlayerMove : MonoBehaviour
     private CapsuleCollider2D capsuleCollider2D;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private Color materialTintColor;
     
 
     void Awake()
@@ -40,11 +40,6 @@ public class PlayerMove : MonoBehaviour
 
         if(Input.GetButtonDown("Horizontal"))
             spriteRenderer.flipX = !(Input.GetAxisRaw("Horizontal") == -1);
-
-        if(isHurting)
-        {            
-            StartCoroutine("CoBlinkingPlayer");
-        }
     }
 
     void FixedUpdate()
@@ -84,11 +79,29 @@ public class PlayerMove : MonoBehaviour
         return raycastHit.collider != null;
     }
 
-    IEnumerable CoBlinkingPlayer()
+    public void DamageFlash()
     {
-        spriteRenderer.material.color = new Color(1, 1, 1, 0.5f);
-        yield return new WaitForSeconds(2f);
-        spriteRenderer.material.color = new Color(1, 1, 1, 1);
-        isHurting = false;
+        materialTintColor = new Color(1, 1, 1, 0.5f);
+        spriteRenderer.material.SetColor("_Color", materialTintColor);
+    }
+
+    public void DamageKnockBack(Vector3 knockbackDir, float knockbackDistance, int damageAmount)
+    {
+        transform.position += knockbackDir * knockbackDistance;
+        DamageFlash();
+        HeartsHealthVisual.heartHealthSystemStatic.Damage(damageAmount);
+        StartCoroutine(CoEnableDamage());
+    }
+
+    public IEnumerator CoEnableDamage()
+    {
+        isHurting = true;
+        if(isHurting)
+        {
+            yield return new WaitForSeconds(2f);
+            materialTintColor = new Color(1, 1, 1, 1f);
+            spriteRenderer.material.SetColor("_Color", materialTintColor);
+            isHurting = false;
+        }
     }
 }

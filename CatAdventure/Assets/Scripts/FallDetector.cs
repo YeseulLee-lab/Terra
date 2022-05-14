@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class FallDetector : MonoBehaviour
 {
-    public Life life;
     [SerializeField] private Transform playerObject;
     [SerializeField] private Transform checkPoint;
     [SerializeField] private GameObject[] fadingPlatforms;
+    [SerializeField] private int damageAmount;
+
 
     private void Start()
     {
@@ -20,13 +21,19 @@ public class FallDetector : MonoBehaviour
         set { checkPoint = value;}
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collision.gameObject.name == "player")
+        PlayerMove player = collider.gameObject.GetComponent<PlayerMove>();
+        if(!player.isHurting)
+        {
+            player.DamageFlash();
+            HeartsHealthVisual.heartHealthSystemStatic.Damage(damageAmount);
+            StartCoroutine(player.CoEnableDamage());
+        }        
+
+        if (collider.gameObject.name == "player")
         {
             playerObject.position = checkPoint.position;
-            life.LifeNum--;
-            life.ActiveLife();
 
             for (int i = 0; i < fadingPlatforms.Length; i++)
             {
