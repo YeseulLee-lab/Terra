@@ -17,7 +17,6 @@ public class Parallax : MonoBehaviour
         startPos = transform.position;
     }
 
-
     private void LateUpdate()
     {
         var position = startPos;

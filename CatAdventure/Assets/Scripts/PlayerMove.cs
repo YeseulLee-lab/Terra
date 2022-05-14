@@ -42,9 +42,8 @@ public class PlayerMove : MonoBehaviour
             spriteRenderer.flipX = !(Input.GetAxisRaw("Horizontal") == -1);
 
         if(isHurting)
-        {
-            spriteRenderer.material.color = new Color(1, 1, 1, 0.5f);
-            Invoke(nameof(CoBlinkingPlayer), 2f);
+        {            
+            StartCoroutine("CoBlinkingPlayer");
         }
     }
 
@@ -85,8 +84,10 @@ public class PlayerMove : MonoBehaviour
         return raycastHit.collider != null;
     }
 
-    public void CoBlinkingPlayer()
+    IEnumerable CoBlinkingPlayer()
     {
+        spriteRenderer.material.color = new Color(1, 1, 1, 0.5f);
+        yield return new WaitForSeconds(2f);
         spriteRenderer.material.color = new Color(1, 1, 1, 1);
         isHurting = false;
     }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5657283986571048774}
   - component: {fileID: 5657283986571048773}
   - component: {fileID: 5657283986571048772}
-  - component: {fileID: 5657283986571048775}
+  - component: {fileID: 5424375003050290146}
   m_Layer: 10
   m_Name: MovingFlatform_short
   m_TagString: Untagged
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 6656720afa5ce144288d1011788ce875, type: 3}
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: abc09ac7ebe3c60468f31250a0d18042, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   movingPlatformParent: {fileID: 0}
   wayPoints: []
   speed: 2
---- !u!61 &5657283986571048775
+--- !u!61 &5424375003050290146
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -113,16 +113,16 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.002266407, y: -0.025425076}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.9797297}
+    oldSize: {x: 1.010101, y: 1}
     newSize: {x: 2.0517242, y: 1.0344827}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.99802494, y: 0.92195225}
+  m_Size: {x: 1.010101, y: 1}
   m_EdgeRadius: 0

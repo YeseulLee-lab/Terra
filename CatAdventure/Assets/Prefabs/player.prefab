@@ -75,8 +75,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: f86106596483b2d49862a5aa9df17ee8, type: 3}
+  m_SortingOrder: 4
+  m_Sprite: {fileID: 21300000, guid: d8a80a0291363e148a9cb1fa0ea3fff2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,7 +104,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: 98283932e2a929243af5809036afa9d0, type: 2}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -121,8 +121,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: -0.11654711, y: -0.0016075969}
-  m_Size: {x: 0.66501045, y: 1.324628}
+  m_Offset: {x: -0.13496256, y: -0.0035301447}
+  m_Size: {x: 0.6702719, y: 1.9072249}
   m_Direction: 0
 --- !u!114 &252353043636346093
 MonoBehaviour:
@@ -136,12 +136,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92534bed830db9241b1914733c8d0f30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 4
-  jumpPower: 15
+  maxSpeed: 6
+  jumpPower: 14
   platformLayerMask:
     serializedVersion: 2
     m_Bits: 1024
   spike: {fileID: 0}
+  isHurting: 0
 --- !u!95 &1350691849056667516
 Animator:
   serializedVersion: 3
