@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    public enum ItemType
     {
-        PlayerMove player = collision.gameObject.GetComponent<PlayerMove>();
-        if(null != player)
-        {
-            Destroy(gameObject);
-        }
+        Light,
+        Fire,
+        Water,
     }
+
+    public ItemType itemType;
+    public int amount;
 }
