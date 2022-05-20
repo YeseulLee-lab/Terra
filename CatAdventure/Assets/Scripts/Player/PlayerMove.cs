@@ -38,7 +38,17 @@ public class PlayerMove : MonoBehaviour
         }
 
         if(Input.GetButtonDown("Horizontal"))
+        {
+            Vector2 offset = capsuleCollider2D.offset;
             spriteRenderer.flipX = !(Input.GetAxisRaw("Horizontal") == -1);
+            if(Input.GetAxisRaw("Horizontal") == -1)
+                offset.x = -0.15f;
+            else
+                offset.x = 0.15f;
+            capsuleCollider2D.offset = offset;
+
+        }
+
     }
 
     void FixedUpdate()
