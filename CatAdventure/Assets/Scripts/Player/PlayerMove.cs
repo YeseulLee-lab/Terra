@@ -15,6 +15,8 @@ public class PlayerMove : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private Color materialTintColor;
+    private float jumpTimeCounter;
+    public float jumpTime;
 
     void Awake()
     {
@@ -27,12 +29,30 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         //Jump
-        if(IsGrounded() && Input.GetButtonDown("Jump"))
+        if (IsGrounded())
         {
-            rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            if(Input.GetButtonDown("Jump"))
+            {
+                rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+                jumpTimeCounter = jumpTime;
+            }
+                
+            rigid.gravityScale = 2;
         }
+        else
+            rigid.gravityScale = 3;
+
+        if(Input.GetButtonDown("Jump"))
+        {
+            if(jumpTimeCounter >0)
+            {
+                rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+                jumpTimeCounter -= Time.deltaTime;
+            }
+        }
+
         //Stop Speed
-        if(Input.GetButtonUp("Horizontal"))
+        if (Input.GetButtonUp("Horizontal"))
         {
             rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);
         }
