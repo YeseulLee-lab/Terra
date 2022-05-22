@@ -7,7 +7,10 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private LayerMask platformLayerMask = default;
     public float maxSpeed;
     public float jumpPower;
+    public float jumpTime;
     public bool isHurting = false;
+    
+    public InventoryObject inventory;
 
     Rigidbody2D rigid;    
 
@@ -16,7 +19,6 @@ public class PlayerMove : MonoBehaviour
     private Animator animator;
     private Color materialTintColor;
     private float jumpTimeCounter;
-    public float jumpTime;
 
     void Awake()
     {
@@ -33,23 +35,24 @@ public class PlayerMove : MonoBehaviour
         {
             if(Input.GetButtonDown("Jump"))
             {
-                rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+                rigid.velocity = Vector2.up * jumpPower;
                 jumpTimeCounter = jumpTime;
             }
                 
-            rigid.gravityScale = 2;
+            rigid.gravityScale = 1;
         }
         else
-            rigid.gravityScale = 3;
+            rigid.gravityScale = 4;
 
-        if(Input.GetButtonDown("Jump"))
+        //누른시간에 따라 점프 높이 달라짐
+        /*if(Input.GetKey(KeyCode.Space))
         {
             if(jumpTimeCounter >0)
             {
-                rigid.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+                rigid.velocity = Vector2.up * jumpPower;
                 jumpTimeCounter -= Time.deltaTime;
             }
-        }
+        }*/
 
         //Stop Speed
         if (Input.GetButtonUp("Horizontal"))
@@ -74,9 +77,9 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         //Move By Key Control
-        float h = Input.GetAxisRaw("Horizontal");
+        float moveInput = Input.GetAxisRaw("Horizontal");
 
-        rigid.AddForce(Vector2.right * h, ForceMode2D.Impulse);
+        rigid.velocity = new Vector2(moveInput * maxSpeed, rigid.velocity.y);
 
         if(rigid.velocity.x > maxSpeed) //Right Max Speed
         {
@@ -131,6 +134,17 @@ public class PlayerMove : MonoBehaviour
             materialTintColor = new Color(1, 1, 1, 1f);
             spriteRenderer.material.SetColor("_Color", materialTintColor);
             isHurting = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        var item = collision.GetComponent<Item>();
+        if(item)
+        {
+            inventory.AddItem(item.item, 1);
+            item.itemSlot.updateAmount(1);
+            Destroy(collision.gameObject);
         }
     }
 }
