@@ -13524,6 +13524,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 252353043636346093, guid: 580f1c9238aba664aa849d0845a4e6de,
+        type: 3}
+      propertyPath: jumpPower
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 252353043636346093, guid: 580f1c9238aba664aa849d0845a4e6de,
+        type: 3}
+      propertyPath: fallGravityMultiflier
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 580f1c9238aba664aa849d0845a4e6de, type: 3}
 --- !u!1001 &1004060344843014947

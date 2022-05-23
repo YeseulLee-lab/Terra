@@ -5,9 +5,11 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private LayerMask platformLayerMask = default;
+    [SerializeField] private float gravityScale;
+    public float fallGravityMultiflier;
+
     public float maxSpeed;
     public float jumpPower;
-    public float jumpTime;
     public bool isHurting = false;
     
     public InventoryObject inventory;
@@ -18,6 +20,11 @@ public class PlayerMove : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private Color materialTintColor;
+
+    private float coyoteTime = 0.2f;
+    private float coyoteTimeCounter;
+
+    public float jumpTime;
     private float jumpTimeCounter;
 
     void Awake()
@@ -30,19 +37,31 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        //Jump
-        if (IsGrounded())
+        if(IsGrounded())
         {
-            if(Input.GetButtonDown("Jump"))
-            {
-                rigid.velocity = Vector2.up * jumpPower;
-                jumpTimeCounter = jumpTime;
-            }
-                
-            rigid.gravityScale = 1;
+            coyoteTimeCounter = coyoteTime;
+            rigid.gravityScale = gravityScale;
         }
         else
-            rigid.gravityScale = 4;
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+            rigid.gravityScale = gravityScale * fallGravityMultiflier;
+        }
+
+        //Jump
+
+        if(coyoteTimeCounter > 0f && Input.GetButtonDown("Jump"))
+        {
+            rigid.velocity = Vector2.up * jumpPower;
+            //jumpTimeCounter = jumpTime;
+        }
+
+        if(Input.GetButtonUp("Jump") && rigid.velocity.y > 0f)
+        {
+            rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * 0.5f);
+            coyoteTimeCounter = 0f;
+        }
+
 
         //누른시간에 따라 점프 높이 달라짐
         /*if(Input.GetKey(KeyCode.Space))

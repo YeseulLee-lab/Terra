@@ -8,7 +8,6 @@ public class FallDetector : MonoBehaviour
     [SerializeField] private Transform checkPoint;
     [SerializeField] private GameObject[] fadingPlatforms;
     [SerializeField] private int damageAmount;
-    //test
 
     private void Start()
     {
