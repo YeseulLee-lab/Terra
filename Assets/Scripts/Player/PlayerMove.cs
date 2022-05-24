@@ -11,8 +11,6 @@ public class PlayerMove : MonoBehaviour
     public float maxSpeed;
     public float jumpPower;
     public bool isHurting = false;
-    
-    public InventoryObject inventory;
 
     Rigidbody2D rigid;    
 
@@ -154,15 +152,5 @@ public class PlayerMove : MonoBehaviour
             spriteRenderer.material.SetColor("_Color", materialTintColor);
             isHurting = false;
         }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        var item = collision.GetComponent<Item>();
-        if(item)
-        {
-            inventory.AddItem(item.item, 1);
-            Destroy(collision.gameObject);
-        }
-    }
+    }    
 }

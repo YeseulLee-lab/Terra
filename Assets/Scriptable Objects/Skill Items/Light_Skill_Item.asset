@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Light_Skill_Item
   m_EditorClassIdentifier: 
   uid: 1001
-  prefab: {fileID: 2432302188580247191, guid: e0ee357542e300245842e723186f5ef3, type: 3}
+  icon: {fileID: 21300000, guid: 548a38fd2190d0a4fbeeb2bcf8146951, type: 3}
   type: 0
   description: "\uD50C\uB808\uC774\uC5B4 3\uCD08\uAC04 \uBB34\uC801(\uBB34\uC801\uC778
     \uB3D9\uC548 \uAE5C\uBE61\uC784)"

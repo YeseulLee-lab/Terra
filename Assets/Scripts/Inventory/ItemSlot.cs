@@ -1,23 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
-[System.Serializable]
+
 public class ItemSlot : MonoBehaviour
 {
     public TextMeshProUGUI amounText;
-    public ItemObject item;
     public int amount;
+    public Image icon;
 
-    private void Start()
-    {
-        amounText.text = amount.ToString();
-    }
+    Item item;
 
-    public void updateAmount(int _amount)
+    public void AddItem(int _amount, Item newItem)
     {
         amount = _amount;
         amounText.text = amount.ToString();
+        item = newItem;
+        icon.sprite = item.itemObject.icon;
+        icon.enabled = true;
     }
 }
