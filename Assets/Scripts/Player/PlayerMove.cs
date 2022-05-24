@@ -162,7 +162,6 @@ public class PlayerMove : MonoBehaviour
         if(item)
         {
             inventory.AddItem(item.item, 1);
-            item.itemSlot.updateAmount(1);
             Destroy(collision.gameObject);
         }
     }

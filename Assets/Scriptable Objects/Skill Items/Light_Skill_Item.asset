@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6837a5e6997413d49bdbb952bc70324a, type: 3}
   m_Name: Light_Skill_Item
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8702954012021260347, guid: 1178ee698506ac343bf33a4632926427, type: 3}
+  uid: 1001
+  prefab: {fileID: 2432302188580247191, guid: e0ee357542e300245842e723186f5ef3, type: 3}
   type: 0
   description: "\uD50C\uB808\uC774\uC5B4 3\uCD08\uAC04 \uBB34\uC801(\uBB34\uC801\uC778
     \uB3D9\uC548 \uAE5C\uBE61\uC784)"

@@ -7,7 +7,7 @@ using TMPro;
 public class ItemSlot : MonoBehaviour
 {
     public TextMeshProUGUI amounText;
-
+    public ItemObject item;
     public int amount;
 
     private void Start()
