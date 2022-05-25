@@ -4,18 +4,29 @@ using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
+    Inventory inventory;
     public ItemSlot[] itemSlotArr;
 
     private void Start()
     {
+        inventory = Inventory.instance;
+        inventory.OnItemChangedCallBack += UpdateUI;
         itemSlotArr = gameObject.transform.GetChild(0).gameObject.GetComponentsInChildren<ItemSlot>();
     }
 
-    /*void UpdateUI()
+    void UpdateUI()
     {
-        for(int i = 0; i<itemSlotArr.Length; i++)
+        for (int i = 0; i < itemSlotArr.Length; i++)
         {
-            itemSlotArr[i].AddItem()
+            if(i<inventory.itemObejcts.Count)
+            {
+                itemSlotArr[i].AddItem(inventory.itemObejcts[i]);
+                itemSlotArr[i].amounText.text = inventory.itemObejcts[i].amount.ToString();
+            }
+            else
+            {
+                itemSlotArr[i].ClearSlot();
+            }
         }
-    }*/
+    }
 }

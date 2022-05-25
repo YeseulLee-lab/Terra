@@ -5,13 +5,23 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public ItemObject itemObject;
+    public int amount = 1;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
         {
-            InventoryObject.instance.AddItem(itemObject, 1);
-            Destroy(gameObject);
+            bool wasPickedUp = Inventory.instance.Add(itemObject, amount);
+
+            if(wasPickedUp)
+            {
+                Destroy(gameObject);
+            }            
         }        
+    }
+
+    private void OnApplicationQuit()
+    {
+        itemObject.amount = 1;
     }
 }

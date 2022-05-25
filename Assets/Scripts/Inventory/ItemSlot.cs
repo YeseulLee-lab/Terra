@@ -8,17 +8,22 @@ using TMPro;
 public class ItemSlot : MonoBehaviour
 {
     public TextMeshProUGUI amounText;
-    public int amount;
     public Image icon;
 
-    Item item;
+    ItemObject itemObject;
 
-    public void AddItem(int _amount, Item newItem)
+    public void AddItem(ItemObject newItemObject)
     {
-        amount = _amount;
-        amounText.text = amount.ToString();
-        item = newItem;
-        icon.sprite = item.itemObject.icon;
+        itemObject = newItemObject;
+        icon.sprite = itemObject.icon;
         icon.enabled = true;
     }
+
+    public void ClearSlot()
+    {
+        itemObject = null;
+        icon.sprite = null;
+        icon.enabled = false;
+    }
+
 }

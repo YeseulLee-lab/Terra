@@ -143,9 +143,8 @@ MonoBehaviour:
   fallGravityMultiflier: 5
   maxSpeed: 6
   jumpPower: 20
-  jumpTime: 0.35
   isHurting: 0
-  inventory: {fileID: 11400000, guid: f2be41e091bd6f9439edb501b1b6cb0d, type: 2}
+  jumpTime: 0.35
 --- !u!95 &1350691849056667516
 Animator:
   serializedVersion: 3
