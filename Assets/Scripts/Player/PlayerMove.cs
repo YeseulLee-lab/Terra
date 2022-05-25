@@ -13,6 +13,7 @@ public class PlayerMove : MonoBehaviour
     public bool isHurting = false;
 
     Rigidbody2D rigid;    
+    bool facingRight = true;
 
     private CapsuleCollider2D capsuleCollider2D;
     private SpriteRenderer spriteRenderer;
@@ -77,17 +78,17 @@ public class PlayerMove : MonoBehaviour
             rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);
         }
 
-        if(Input.GetButtonDown("Horizontal"))
+        /*if (Input.GetButtonDown("Horizontal"))
         {
             Vector2 offset = capsuleCollider2D.offset;
             spriteRenderer.flipX = !(Input.GetAxisRaw("Horizontal") == -1);
-            if(Input.GetAxisRaw("Horizontal") == -1)
+            if (Input.GetAxisRaw("Horizontal") == -1)
                 offset.x = -0.15f;
             else
                 offset.x = 0.15f;
             capsuleCollider2D.offset = offset;
 
-        }
+        }*/
 
     }
 
@@ -98,15 +99,24 @@ public class PlayerMove : MonoBehaviour
 
         rigid.velocity = new Vector2(moveInput * maxSpeed, rigid.velocity.y);
 
-        if(rigid.velocity.x > maxSpeed) //Right Max Speed
+        if(moveInput > 0 && !facingRight)
         {
-            rigid.velocity = new Vector2(maxSpeed, rigid.velocity.y);
+            Flip();
         }
-        else if(rigid.velocity.x < maxSpeed*(-1)) //Left Max Speed
+        else if(moveInput < 0 && facingRight)
         {
-            rigid.velocity = new Vector2(maxSpeed*(-1), rigid.velocity.y);
+            Flip();
         }
              
+    }
+
+    void Flip()
+    {
+        Vector3 currentScale = gameObject.transform.localScale;
+        currentScale.x *= -1;
+        gameObject.transform.localScale = currentScale;
+
+        facingRight = !facingRight;
     }
 
     private bool IsGrounded()
