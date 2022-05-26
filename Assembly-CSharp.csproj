@@ -59,13 +59,13 @@
     <Compile Include="Assets\Scripts\Platform\FadingPlatform.cs" />
     <Compile Include="Assets\Scripts\CheckPoint.cs" />
     <Compile Include="Assets\Scripts\Life.cs" />
+    <Compile Include="Assets\Scripts\Inventory\InventoryUI.cs" />
     <Compile Include="Assets\Scripts\Inventory\ItemSlot.cs" />
     <Compile Include="Assets\Scripts\Platform\MovingPlatform.cs" />
     <Compile Include="Assets\Scripts\Inventory\ItemObject.cs" />
     <Compile Include="Assets\Scripts\FallDetector.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMove.cs" />
     <Compile Include="Assets\Scripts\Platform\ScrollingBackground.cs" />
-    <Compile Include="Assets\Scripts\Inventory\DisplayInventorySlot.cs" />
     <Compile Include="Assets\Scripts\Inventory\Item.cs" />
     <Compile Include="Assets\Scripts\Spike.cs" />
     <Compile Include="Assets\Scripts\Platform\Parallax.cs" />
@@ -75,7 +75,7 @@
     <Compile Include="Assets\Scripts\HeartSystem\HeartHealthSystem.cs" />
     <Compile Include="Assets\Scripts\HeartSystem\HeartsHealthVisual.cs" />
     <Compile Include="Assets\Scripts\Inventory\SkillItemObject.cs" />
-    <Compile Include="Assets\Scripts\Inventory\InventoryObject.cs" />
+    <Compile Include="Assets\Scripts\Inventory\Inventory.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
