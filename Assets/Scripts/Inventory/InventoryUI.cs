@@ -23,10 +23,11 @@ public class InventoryUI : MonoBehaviour
                 itemSlotArr[i].AddItem(inventory.itemObejcts[i]);
                 itemSlotArr[i].amounText.text = inventory.itemObejcts[i].amount.ToString();
             }
-            else
+            //획득한 아이템 외의 다른 칸 클리어
+            /*else
             {
                 itemSlotArr[i].ClearSlot();
-            }
+            }*/
         }
     }
 }
