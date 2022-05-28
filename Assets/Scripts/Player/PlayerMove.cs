@@ -99,15 +99,15 @@ public class PlayerMove : MonoBehaviour
 
         rigid.velocity = new Vector2(moveInput * maxSpeed, rigid.velocity.y);
 
-        if(moveInput > 0 && !facingRight)
+        if (moveInput > 0 && !facingRight)
         {
             Flip();
         }
-        else if(moveInput < 0 && facingRight)
+        else if (moveInput < 0 && facingRight)
         {
             Flip();
         }
-             
+
     }
 
     void Flip()

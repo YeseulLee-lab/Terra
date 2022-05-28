@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour
 {
@@ -23,18 +24,24 @@ public class MapManager : MonoBehaviour
 
     public MapState mapState;
 
-     void Start()
-    {
+     public void InventoryInit()
+     {
         switch(mapState)
         {
             case MapState.Forest:
-                ForestInit();
+                ForestInventoryInit();
                 break;
         }
+     }
+
+    public void ForestInventoryInit()
+    {
+        if(Inventory.instance != null)
+            Inventory.instance.space = 1;
     }
 
-    public void ForestInit()
+    public void TestLoadScene()
     {
-        Inventory.instance.space = 1;
+        SceneManager.LoadScene("Forest");
     }
 }

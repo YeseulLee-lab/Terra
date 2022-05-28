@@ -22,6 +22,11 @@ public class Inventory : MonoBehaviour
 
     public List<ItemObject> itemObejcts = new List<ItemObject>();
 
+    private void Start()
+    {
+        MapManager.instance.InventoryInit();
+    }
+
     public bool Add(ItemObject itemObject, int amount)
     {
         if(!itemObject.isDefaultItem)
