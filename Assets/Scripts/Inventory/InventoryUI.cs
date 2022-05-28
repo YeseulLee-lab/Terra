@@ -12,6 +12,16 @@ public class InventoryUI : MonoBehaviour
         inventory = Inventory.instance;
         inventory.OnItemChangedCallBack += UpdateUI;
         itemSlotArr = gameObject.transform.GetChild(0).gameObject.GetComponentsInChildren<ItemSlot>();
+
+        for(int i = 0; i < itemSlotArr.Length; i++)
+        {
+            itemSlotArr[i].gameObject.SetActive(false);
+        }
+
+        for (int i = 0; i < inventory.space; i++)
+        {
+            itemSlotArr[i].gameObject.SetActive(true);
+        }
     }
 
     void UpdateUI()

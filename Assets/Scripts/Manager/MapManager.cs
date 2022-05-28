@@ -23,7 +23,7 @@ public class MapManager : MonoBehaviour
 
     public MapState mapState;
 
-    public void Init()
+     void Start()
     {
         switch(mapState)
         {
