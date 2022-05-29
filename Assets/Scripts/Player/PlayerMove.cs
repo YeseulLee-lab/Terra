@@ -150,9 +150,9 @@ public class PlayerMove : MonoBehaviour
         isHurting = true;
         if(isHurting)
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.5f);
             isKnockback = false;
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
             materialTintColor = new Color(1, 1, 1, 1f);
             spriteRenderer.material.SetColor("_Color", materialTintColor);
             isHurting = false;
