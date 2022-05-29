@@ -13,8 +13,7 @@ public class Spike : MonoBehaviour
         {
             if(!player.isHurting)
             {
-                Vector3 knockbackDir = (player.transform.position - transform.position).normalized;
-                player.DamageKnockBack(knockbackDir, 1.5f, damageAmount);
+                player.DamageKnockBack(gameObject.transform.position, damageAmount);
             }            
         }
     }

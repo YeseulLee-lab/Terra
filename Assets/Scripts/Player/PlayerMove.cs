@@ -14,6 +14,7 @@ public class PlayerMove : MonoBehaviour
 
     Rigidbody2D rigid;    
     bool facingRight = true;
+    bool isKnockback = false;
 
     private CapsuleCollider2D capsuleCollider2D;
     private SpriteRenderer spriteRenderer;
@@ -23,9 +24,6 @@ public class PlayerMove : MonoBehaviour
     private float coyoteTime = 0.2f;
     private float coyoteTimeCounter;
 
-    public float jumpTime;
-    private float jumpTimeCounter;
-
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -33,6 +31,7 @@ public class PlayerMove : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
     }
+
 
     void Update()
     {
@@ -61,53 +60,42 @@ public class PlayerMove : MonoBehaviour
             coyoteTimeCounter = 0f;
         }
 
-
-        //누른시간에 따라 점프 높이 달라짐
-        /*if(Input.GetKey(KeyCode.Space))
-        {
-            if(jumpTimeCounter >0)
-            {
-                rigid.velocity = Vector2.up * jumpPower;
-                jumpTimeCounter -= Time.deltaTime;
-            }
-        }*/
-
         //Stop Speed
         if (Input.GetButtonUp("Horizontal"))
         {
-            rigid.velocity = new Vector2(rigid.velocity.normalized.x * 0.5f, rigid.velocity.y);
+            rigid.velocity = new Vector2(0, rigid.velocity.y);
         }
-
-        /*if (Input.GetButtonDown("Horizontal"))
-        {
-            Vector2 offset = capsuleCollider2D.offset;
-            spriteRenderer.flipX = !(Input.GetAxisRaw("Horizontal") == -1);
-            if (Input.GetAxisRaw("Horizontal") == -1)
-                offset.x = -0.15f;
-            else
-                offset.x = 0.15f;
-            capsuleCollider2D.offset = offset;
-
-        }*/
-
     }
 
     void FixedUpdate()
     {
         //Move By Key Control
-        float moveInput = Input.GetAxisRaw("Horizontal");
+        //float moveInput = Input.GetAxisRaw("Horizontal");
 
-        rigid.velocity = new Vector2(moveInput * maxSpeed, rigid.velocity.y);
+        /*rigid.AddForce(Vector2.right * moveInput, ForceMode2D.Impulse);
 
-        if (moveInput > 0 && !facingRight)
+        if (rigid.velocity.x > maxSpeed)
+            rigid.velocity = new Vector2(maxSpeed, rigid.velocity.y);
+        else if (rigid.velocity.x < maxSpeed * (-1))
+            rigid.velocity = new Vector2(maxSpeed * (-1), rigid.velocity.y);*/
+
+        if(!isKnockback)
         {
-            Flip();
-        }
-        else if (moveInput < 0 && facingRight)
-        {
-            Flip();
-        }
+            float moveInput = Input.GetAxisRaw("Horizontal");
 
+            if (moveInput != 0)
+                rigid.velocity = new Vector2(moveInput * maxSpeed, rigid.velocity.y);
+
+            if (moveInput > 0 && !facingRight)
+            {
+                Flip();
+            }
+            else if (moveInput < 0 && facingRight)
+            {
+                Flip();
+            }
+        }
+        
     }
 
     void Flip()
@@ -144,11 +132,16 @@ public class PlayerMove : MonoBehaviour
         spriteRenderer.material.SetColor("_Color", materialTintColor);
     }
 
-    public void DamageKnockBack(Vector3 knockbackDir, float knockbackDistance, int damageAmount)
+
+    public void DamageKnockBack(Vector2 targetPos, int damageAmount)
     {
-        transform.position += knockbackDir * knockbackDistance;
+        int dir = transform.position.x - targetPos.x > 0 ? 1 : -1;
+        Vector2 knockBack = new Vector2(dir, 1)*7;
+        rigid.AddForce(knockBack, ForceMode2D.Impulse);
         DamageFlash();
+        isKnockback = true;
         HeartsHealthVisual.heartHealthSystemStatic.Damage(damageAmount);
+
         StartCoroutine(CoEnableDamage());
     }
 
@@ -157,7 +150,9 @@ public class PlayerMove : MonoBehaviour
         isHurting = true;
         if(isHurting)
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
+            isKnockback = false;
+            yield return new WaitForSeconds(1f);
             materialTintColor = new Color(1, 1, 1, 1f);
             spriteRenderer.material.SetColor("_Color", materialTintColor);
             isHurting = false;
