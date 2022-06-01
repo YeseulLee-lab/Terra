@@ -48,7 +48,10 @@ public class Inventory : MonoBehaviour
                 }
             }
             if(!itemAlreadyInInven)
+            {
                 itemObejcts.Add(itemObject);
+                itemObject.amount ++;
+            }
 
             if (OnItemChangedCallBack != null)
                 OnItemChangedCallBack.Invoke();

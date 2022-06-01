@@ -60,6 +60,6 @@ public class Item : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        skillItemObject.amount = 1;
+        skillItemObject.amount = 0;
     }
 }
