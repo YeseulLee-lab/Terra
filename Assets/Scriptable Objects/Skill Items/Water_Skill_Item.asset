@@ -15,7 +15,7 @@ MonoBehaviour:
   uid: 1002
   icon: {fileID: 21300000, guid: 0de9e560d0522644ea3d03d66f20ac8d, type: 3}
   isDefaultItem: 0
-  amount: 1
+  amount: 0
   type: 0
   description: "\uD018\uC2A4\uD2B8\uC5D0\uC11C \uBAA8\uC544\uC57C \uD558\uB294 \uAC1C\uC218
     1\uAC1C \uCC44\uC6CC\uC90C"
