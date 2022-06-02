@@ -83,8 +83,7 @@ public class PlayerMove : MonoBehaviour
         {
             float moveInput = Input.GetAxisRaw("Horizontal");
 
-            if (moveInput != 0)
-                rigid.velocity = new Vector2(moveInput * maxSpeed, rigid.velocity.y);
+            rigid.velocity = new Vector2(moveInput * maxSpeed, rigid.velocity.y);
 
             if (moveInput > 0 && !facingRight)
             {
