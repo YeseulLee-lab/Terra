@@ -75,7 +75,10 @@
     <Compile Include="Assets\Scripts\HeartSystem\HeartHealthSystem.cs" />
     <Compile Include="Assets\Scripts\HeartSystem\HeartsHealthVisual.cs" />
     <Compile Include="Assets\Scripts\Inventory\SkillItemObject.cs" />
+    <Compile Include="Assets\Scripts\Manager\DontDestoryObject.cs" />
+    <Compile Include="Assets\Scripts\Manager\MapManager.cs" />
     <Compile Include="Assets\Scripts\Inventory\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Manager\ControlManager.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
