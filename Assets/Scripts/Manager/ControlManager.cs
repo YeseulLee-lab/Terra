@@ -15,11 +15,13 @@ public class ControlManager : MonoBehaviour
     }
     #endregion
 
+    public GameObject StartPoint;
+
     public void RetryGame()
     {
         if(Input.GetKeyDown(KeyCode.R))
         {
-
+            
         }
     }
 }

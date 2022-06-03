@@ -134,9 +134,9 @@ public class PlayerMove : MonoBehaviour
     }
 
 
-    public void DamageKnockBack(Vector2 targetPos, int damageAmount)
+    public void DamageKnockBack(Vector3 targetPos, int damageAmount)
     {
-        int dir = transform.position.x - targetPos.x > 0 ? 1 : -1;
+         int dir = transform.position.x - targetPos.x > 0 ? 1 : -1;
         Vector2 knockBack = new Vector2(dir, 1)*7;
         rigid.AddForce(knockBack, ForceMode2D.Impulse);
         DamageFlash();
@@ -164,8 +164,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            //todo 수정
-            gameObject.transform.position = gameObject.transform.Find("StartPoint").position;
+            gameObject.transform.position = ControlManager.instance.StartPoint.transform.position;
         }
     }
 }

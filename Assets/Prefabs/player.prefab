@@ -144,7 +144,7 @@ MonoBehaviour:
   maxSpeed: 6
   jumpPower: 20
   isHurting: 0
-  jumpTime: 0.35
+  StartPoint: {fileID: 0}
 --- !u!95 &1350691849056667516
 Animator:
   serializedVersion: 3
