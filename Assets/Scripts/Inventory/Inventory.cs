@@ -66,4 +66,39 @@ public class Inventory : MonoBehaviour
             OnItemChangedCallBack.Invoke();
     }
 
+    private void Update()
+    {
+        UseItem();
+    }
+
+    public void UseItem()
+    {
+        foreach(SkillItemObject itemObject in itemObejcts)
+        {
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                if(itemObject.skillType == SkillItemObject.SkillItemType.Light)
+                    if (itemObject.amount > 0)
+                        itemObject.amount --;
+            }
+
+            else if (Input.GetKeyDown(KeyCode.S))
+            {
+                if (itemObject.skillType == SkillItemObject.SkillItemType.Fire)
+                    if (itemObject.amount > 0)
+                        itemObject.amount--;
+            }
+
+            else if (Input.GetKeyDown(KeyCode.D))
+            {
+                if (itemObject.skillType == SkillItemObject.SkillItemType.Water)
+                    if (itemObject.amount > 0)
+                        itemObject.amount--;
+            }
+        }
+
+        if (Inventory.instance.OnItemChangedCallBack != null)
+            Inventory.instance.OnItemChangedCallBack.Invoke();
+    }
+
 }
