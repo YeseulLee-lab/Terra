@@ -35,8 +35,6 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        RetryGame();
-
         if(IsGrounded())
         {
             coyoteTimeCounter = coyoteTime;
@@ -157,14 +155,6 @@ public class PlayerMove : MonoBehaviour
             materialTintColor = new Color(1, 1, 1, 1f);
             spriteRenderer.material.SetColor("_Color", materialTintColor);
             isHurting = false;
-        }
-    }
-
-    public void RetryGame()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            gameObject.transform.position = ControlManager.instance.StartPoint.transform.position;
         }
     }
 }
