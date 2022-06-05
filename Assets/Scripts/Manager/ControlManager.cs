@@ -24,7 +24,8 @@ public class ControlManager : MonoBehaviour
     private void Update()
     {
         Option();
-        RetryGame();
+        if (Input.GetKeyDown(KeyCode.R))
+            RetryGame();
     }
 
     public void Option()
@@ -58,9 +59,8 @@ public class ControlManager : MonoBehaviour
 
     public void RetryGame()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Player.transform.position = StartPoint.transform.position;
-        }
+        Player.transform.position = StartPoint.transform.position;
+        int fullHealAmount = HeartHealthSystem.MAX_FRAGMENT_AMOUNT * HeartsHealthVisual.heartHealthSystemStatic.GetHeartList().Count;
+        HeartsHealthVisual.heartHealthSystemStatic.Heal(fullHealAmount);
     }
 }
