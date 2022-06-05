@@ -78,8 +78,13 @@ public class Inventory : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.A))
             {
                 if(itemObject.skillType == SkillItemObject.SkillItemType.Light)
+                {
                     if (itemObject.amount > 0)
-                        itemObject.amount --;
+                    {
+                        itemObject.amount--;
+                        UseLightItem();
+                    }
+                }
             }
 
             else if (Input.GetKeyDown(KeyCode.S))
@@ -99,6 +104,13 @@ public class Inventory : MonoBehaviour
 
         if (Inventory.instance.OnItemChangedCallBack != null)
             Inventory.instance.OnItemChangedCallBack.Invoke();
+    }
+
+    public void UseLightItem()
+    {
+        PlayerMove player = ControlManager.instance.Player.GetComponent<PlayerMove>();
+        player.DamageFlash();
+        StartCoroutine(player.CoEnableDamage());
     }
 
 }
