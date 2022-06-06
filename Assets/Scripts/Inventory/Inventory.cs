@@ -22,6 +22,8 @@ public class Inventory : MonoBehaviour
 
     public List<ItemObject> itemObejcts = new List<ItemObject>();
 
+    private bool isUsingItem = false;
+
     private void Start()
     {
         MapManager.instance.InventoryInit();
@@ -73,6 +75,9 @@ public class Inventory : MonoBehaviour
 
     public void UseItem()
     {
+        if(isUsingItem)
+            return;
+
         foreach(SkillItemObject itemObject in itemObejcts)
         {
             if (Input.GetKeyDown(KeyCode.A))
@@ -83,6 +88,7 @@ public class Inventory : MonoBehaviour
                     {
                         itemObject.amount--;
                         UseLightItem();
+                        StartCoroutine(CoItemUserTimer());
                     }
                 }
             }
@@ -110,7 +116,14 @@ public class Inventory : MonoBehaviour
     {
         PlayerMove player = ControlManager.instance.Player.GetComponent<PlayerMove>();
         player.DamageFlash();
-        StartCoroutine(player.CoEnableDamage());
+        StartCoroutine(player.CoEnableDamage(0f, 3f));
+    }
+
+    public IEnumerator CoItemUserTimer()
+    {
+        isUsingItem = true;
+        yield return new WaitForSeconds(3f);
+        isUsingItem = false;
     }
 
 }

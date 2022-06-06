@@ -143,16 +143,16 @@ public class PlayerMove : MonoBehaviour
         isKnockback = true;
         HeartsHealthVisual.heartHealthSystemStatic.Damage(damageAmount);
 
-        StartCoroutine(CoEnableDamage());
+        StartCoroutine(CoEnableDamage(0.5f, 1.5f));
     }
 
-    public IEnumerator CoEnableDamage()
+    public IEnumerator CoEnableDamage(float waitTime1, float waitTime2)
     {
         if(isHurting)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(waitTime1);
             isKnockback = false;
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(waitTime2);
             materialTintColor = new Color(1, 1, 1, 1f);
             spriteRenderer.material.SetColor("_Color", materialTintColor);
             isHurting = false;
