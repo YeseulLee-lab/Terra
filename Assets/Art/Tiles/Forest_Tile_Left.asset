@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: Forest_Tile_Left
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 21300000, guid: 9ebda17ad84fd1842b23e756df327f58, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 35e3ecc8633cb8940a0ad31a8b691c68, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
