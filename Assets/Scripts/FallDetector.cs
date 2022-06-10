@@ -32,13 +32,18 @@ public class FallDetector : MonoBehaviour
 
         if (collider.gameObject.name == "player")
         {
-            playerObject.position = checkPoint.position;
-
             for (int i = 0; i < fadingPlatforms.Length; i++)
             {
                 FadingPlatform fadingPlatformItem = fadingPlatforms[i].GetComponent<FadingPlatform>();
                 fadingPlatformItem.ShowFadingPlatform();
             }
+
+            if (HeartsHealthVisual.heartHealthSystemStatic.IsDead())
+            {
+                ControlManager.instance.RetryGame();
+                return;
+            }
+            playerObject.position = checkPoint.position;
         }            
     }
 }

@@ -52,7 +52,6 @@ public class HeartsHealthVisual : MonoBehaviour
     private void HeartHealthSystem_OnDead(object sender, System.EventArgs e)
     {
         Debug.Log("player is dead");
-        ControlManager.instance.RetryGame();
     }
 
     private void HeartHealthSystem_OnHealed(object sender, System.EventArgs e)
