@@ -2084,7 +2084,7 @@ MonoBehaviour:
   scrolling: 1
   parallax: 1
   backgroundSize: 58.8
-  parallaxSpeed: 0.8
+  parallaxSpeed: 1.2
 --- !u!4 &432498091
 Transform:
   m_ObjectHideFlags: 0
@@ -3175,7 +3175,7 @@ MonoBehaviour:
   scrolling: 1
   parallax: 1
   backgroundSize: 58.8
-  parallaxSpeed: 1
+  parallaxSpeed: 1.5
 --- !u!4 &591429312 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2832370624761712147, guid: a728c1473b998b94ab1698bcd6a862e3,
@@ -13363,7 +13363,7 @@ MonoBehaviour:
   scrolling: 1
   parallax: 1
   backgroundSize: 58.8
-  parallaxSpeed: 0.6
+  parallaxSpeed: 1.1
 --- !u!4 &1032415187
 Transform:
   m_ObjectHideFlags: 0
@@ -16355,7 +16355,7 @@ MonoBehaviour:
   scrolling: 1
   parallax: 1
   backgroundSize: 58.8
-  parallaxSpeed: 0.4
+  parallaxSpeed: 1.1
 --- !u!4 &1671393029
 Transform:
   m_ObjectHideFlags: 0
