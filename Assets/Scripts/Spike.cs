@@ -14,7 +14,13 @@ public class Spike : MonoBehaviour
             if(!player.isHurting)
             {
                 player.DamageKnockBack(gameObject.transform.position, damageAmount);
-            }            
+            }
+
+            if (HeartsHealthVisual.heartHealthSystemStatic.IsDead())
+            {
+                ControlManager.instance.RetryGame();
+                return;
+            }
         }
     }
 }

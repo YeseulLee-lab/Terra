@@ -28,22 +28,19 @@ public class FallDetector : MonoBehaviour
             player.DamageFlash();
             HeartsHealthVisual.heartHealthSystemStatic.Damage(damageAmount);
             StartCoroutine(player.CoEnableDamage(0.5f, 1.5f));
-        }        
+        }
 
-        if (collider.gameObject.name == "player")
+        for (int i = 0; i < fadingPlatforms.Length; i++)
         {
-            for (int i = 0; i < fadingPlatforms.Length; i++)
-            {
-                FadingPlatform fadingPlatformItem = fadingPlatforms[i].GetComponent<FadingPlatform>();
-                fadingPlatformItem.ShowFadingPlatform();
-            }
+            FadingPlatform fadingPlatformItem = fadingPlatforms[i].GetComponent<FadingPlatform>();
+            fadingPlatformItem.ShowFadingPlatform();
+        }
 
-            if (HeartsHealthVisual.heartHealthSystemStatic.IsDead())
-            {
-                ControlManager.instance.RetryGame();
-                return;
-            }
-            playerObject.position = checkPoint.position;
-        }            
+        if (HeartsHealthVisual.heartHealthSystemStatic.IsDead())
+        {
+            ControlManager.instance.RetryGame();
+            return;
+        }
+        playerObject.position = checkPoint.position;    
     }
 }
