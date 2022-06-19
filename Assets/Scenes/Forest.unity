@@ -4718,7 +4718,7 @@ GameObject:
   - component: {fileID: 696833929}
   - component: {fileID: 696833931}
   m_Layer: 10
-  m_Name: Platforms
+  m_Name: Forest_Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
