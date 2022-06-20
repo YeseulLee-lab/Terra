@@ -2799,7 +2799,7 @@ GameObject:
   - component: {fileID: 527177641}
   - component: {fileID: 527177640}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: Platform_Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16010,7 +16010,7 @@ GameObject:
   - component: {fileID: 1611245607}
   - component: {fileID: 1611245609}
   m_Layer: 10
-  m_Name: Forest_PlatForm
+  m_Name: Forest_Bottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
