@@ -5,11 +5,11 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     [SerializeField] private FallDetector fallDetector;
-    private Animator anim;
+    private Animator animator;
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,7 +17,7 @@ public class CheckPoint : MonoBehaviour
         if (collision.gameObject.name == "player")
         {
             fallDetector.CheckPoint = gameObject.transform;
-            anim.SetTrigger("Move");
+            animator.SetTrigger("Move");
         }
 
     }
