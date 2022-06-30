@@ -42,6 +42,6 @@ public class MapManager : MonoBehaviour
 
     public void TestLoadScene()
     {
-        SceneManager.LoadScene("Forest");
+        SceneManager.LoadScene("02.Map");
     }
 }
