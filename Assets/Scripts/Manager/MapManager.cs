@@ -18,6 +18,7 @@ public class MapManager : MonoBehaviour
 
     public enum MapState
     {
+        Login,
         Forest,
         Dessert,
     }
@@ -43,5 +44,6 @@ public class MapManager : MonoBehaviour
     public void TestLoadScene()
     {
         SceneManager.LoadScene("02.Map");
+        mapState = MapState.Forest;
     }
 }

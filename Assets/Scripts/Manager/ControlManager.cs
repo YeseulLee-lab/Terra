@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class ControlManager : MonoBehaviour
 {
@@ -22,17 +20,9 @@ public class ControlManager : MonoBehaviour
 
     public GameObject OptionObject;
 
-    public Button bgmButton;
-    public Button fxSoundButton;
-    public Button saveButton;
-    public Button quitButton;
-
     public static bool GameIsPaused = false;
 
-    private void Start()
-    {
-        quitButton.onClick.AddListener(LoadLoginScene);
-    }
+
 
     private void Update()
     {
@@ -75,10 +65,5 @@ public class ControlManager : MonoBehaviour
         Player.transform.position = StartPoint.transform.position;
         int fullHealAmount = HeartHealthSystem.MAX_FRAGMENT_AMOUNT * HeartsHealthVisual.heartHealthSystemStatic.GetHeartList().Count;
         HeartsHealthVisual.heartHealthSystemStatic.Heal(fullHealAmount);
-    }
-
-    public void LoadLoginScene()
-    {
-        SceneManager.LoadScene("01.Login");
     }
 }
