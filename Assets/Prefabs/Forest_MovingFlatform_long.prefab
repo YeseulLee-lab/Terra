@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5789913488488276798}
   - component: {fileID: 5789913488488276793}
   m_Layer: 10
-  m_Name: MovingFlatform_long
+  m_Name: Forest_MovingFlatform_long
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: 0721feb19bd609b4992d0146c699d8d0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cab08f490320c444db6d62da0c424b06, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,7 +101,7 @@ BoxCollider2D:
   m_Offset: {x: 0.00000047683716, y: -0.005041912}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.25, y: 0.5}
     oldSize: {x: 2, y: 1}
     newSize: {x: 2.0517242, y: 1.0344827}
     adaptiveTilingThreshold: 0.5
