@@ -7,7 +7,7 @@ public class FadingPlatform : MonoBehaviour
     [SerializeField] private float fadingSpeed;
     [SerializeField] private float showPlatformTime;
 
-    private BoxCollider2D boxCol2D;
+    private BoxCollider2D[] boxCol2D;
     private SpriteRenderer spriteRend;
     private bool isFading;
     private Color platformAlpha;
@@ -18,7 +18,7 @@ public class FadingPlatform : MonoBehaviour
         platformAlpha = gameObject.GetComponent<SpriteRenderer>().material.color;
         platformAlpha.a = 0;      
 
-        boxCol2D = gameObject.GetComponent<BoxCollider2D>();
+        boxCol2D = gameObject.GetComponents<BoxCollider2D>();
         spriteRend = gameObject.GetComponent<SpriteRenderer>();
     }
     private void Update()
@@ -31,7 +31,8 @@ public class FadingPlatform : MonoBehaviour
           
         if(gameObject.GetComponent<SpriteRenderer>().material.color.a < 0.1f)
         {
-            boxCol2D.enabled = false;            
+            for(int i = 0; i < boxCol2D.Length; i++)
+                boxCol2D[i].enabled = false;
             spriteRend.enabled = false;
             isFading = false;       
         }
@@ -46,7 +47,8 @@ public class FadingPlatform : MonoBehaviour
     public void ShowFadingPlatform()
     {
         gameObject.GetComponent<SpriteRenderer>().material.color = new Color(1f, 1f, 1f, 1f);
-        boxCol2D.enabled = true;
+        for (int i = 0; i < boxCol2D.Length; i++)
+            boxCol2D[i].enabled = true;
         spriteRend.enabled = true;
     }
 
