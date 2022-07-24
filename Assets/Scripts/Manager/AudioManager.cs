@@ -8,12 +8,14 @@ public class AudioManager : MonoBehaviour
 
     public enum AudioChannel
     {
+        Master,
         Bgm,
         Sfx,
     }
 
     public float sfxVolumePercent { get; private set;}
     public float bgmVolumePercent { get; private set; }
+    public float masterVolumePercent { get; private set; }
 
     AudioSource sfxSource;
     AudioSource musicSources;
@@ -42,6 +44,7 @@ public class AudioManager : MonoBehaviour
             sfxSource = newSfxSource.AddComponent<AudioSource>();
             newSfxSource.transform.parent = transform;
 
+            masterVolumePercent = PlayerPrefs.GetFloat("master vol", 1);
             bgmVolumePercent =  PlayerPrefs.GetFloat("bgm vol", 1);
             sfxVolumePercent =  PlayerPrefs.GetFloat("sfx vol", 1);
         }
@@ -52,6 +55,9 @@ public class AudioManager : MonoBehaviour
     {
         switch(channel)
         {
+            case AudioChannel.Master:
+                masterVolumePercent = volumePercent;
+                break;
             case AudioChannel.Bgm:
                 bgmVolumePercent = volumePercent;
                 break;
@@ -60,9 +66,11 @@ public class AudioManager : MonoBehaviour
                 break;
         }
 
-        musicSources.volume = bgmVolumePercent;
-        sfxSource.volume = sfxVolumePercent;
 
+        musicSources.volume = bgmVolumePercent * masterVolumePercent;
+        sfxSource.volume = sfxVolumePercent * masterVolumePercent;
+
+        PlayerPrefs.SetFloat("master vol", masterVolumePercent);
         PlayerPrefs.SetFloat("bgm vol", bgmVolumePercent);
         PlayerPrefs.SetFloat("sfx vol", sfxVolumePercent);
     }
@@ -81,7 +89,7 @@ public class AudioManager : MonoBehaviour
     //이름으로 라이브러리에 있는 효과음 찾기 --> 효과음 제작되면 라이브러리에 넣기
     public void PlaySound(string soundName)
     {
-        sfxSource.PlayOneShot(library.GetClipFromName(soundName), sfxVolumePercent);
+        sfxSource.PlayOneShot(library.GetClipFromName(soundName), sfxVolumePercent * masterVolumePercent);
     }
 
     IEnumerator AnimateMusicCrossfade(float duration)
@@ -91,7 +99,7 @@ public class AudioManager : MonoBehaviour
         while(percent<1)
         {
             percent += Time.deltaTime * 1/duration;
-            musicSources.volume = Mathf.Lerp(0, bgmVolumePercent, percent);
+            musicSources.volume = Mathf.Lerp(0, bgmVolumePercent * masterVolumePercent, percent);
             yield return null;
         }
     }
