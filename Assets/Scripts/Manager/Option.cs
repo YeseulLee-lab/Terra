@@ -39,6 +39,7 @@ public class Option : MonoBehaviour
 
     public void LoadLoginScene()
     {
+        MapManager.instance.mapState = MapManager.MapState.Login;
         SceneManager.LoadScene("01.Login");
     }
 

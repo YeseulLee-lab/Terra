@@ -11,8 +11,12 @@ public class MapManager : MonoBehaviour
     private void Awake()
     {
         if (instance != null)
-            return;
-        instance = this;
+            Destroy(gameObject);
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
     }
     #endregion
 
