@@ -18,12 +18,18 @@ public class Option : MonoBehaviour
 
     public GameObject AudioGroup;
 
+    public GameObject popUpObject;
+    public Text popUpText;
+    public Button popUpYesButton;
+
     private void Start()
     {
         //세이브 버튼 addlistener 추가해야함.
         audioButton.onClick.AddListener(OnClickAudioButton);
-        quitButton.onClick.AddListener(LoadLoginScene);
+        quitButton.onClick.AddListener(OnClickQuitButton);
         initialButton.onClick.AddListener(InitailizeVolume);
+
+        popUpYesButton.onClick.AddListener(LoadLoginScene);
 
         masterSlider.onValueChanged.AddListener(SetMasterVolume);
         bgmSlider.onValueChanged.AddListener(SetBgmVolume);
@@ -36,9 +42,16 @@ public class Option : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(audioButton.gameObject);
     }
 
+    public void OnClickQuitButton()
+    {
+        AudioGroup.SetActive(false);
+        popUpObject.SetActive(true);
+        popUpText.text = "게임을 종료하시겠습니까?";
+    }
 
     public void LoadLoginScene()
     {
+        Time.timeScale = 1;
         MapManager.instance.mapState = MapManager.MapState.Login;
         SceneManager.LoadScene("01.Login");
     }
@@ -67,6 +80,7 @@ public class Option : MonoBehaviour
 
     public void OnClickAudioButton()
     {
+        popUpObject.SetActive(false);
         AudioGroup.SetActive(true);
     }
 }

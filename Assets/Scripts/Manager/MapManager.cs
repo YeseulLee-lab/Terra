@@ -44,10 +44,4 @@ public class MapManager : MonoBehaviour
         if(Inventory.instance != null)
             Inventory.instance.space = 1;
     }
-
-    public void TestLoadScene()
-    {
-        SceneManager.LoadScene("02.Map");
-        mapState = MapState.Forest;
-    }
 }

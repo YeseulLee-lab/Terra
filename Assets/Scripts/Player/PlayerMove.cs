@@ -50,13 +50,13 @@ public class PlayerMove : MonoBehaviour
 
         if(coyoteTimeCounter > 0f && Input.GetButtonDown("Jump"))
         {
+            AudioManager.instance.PlaySound("jump");
             rigid.velocity = Vector2.up * jumpPower;
             //jumpTimeCounter = jumpTime;
         }
 
         if(Input.GetButtonUp("Jump") && rigid.velocity.y > 0f)
         {
-            AudioManager.instance.PlaySound("jump");
             rigid.velocity = new Vector2(rigid.velocity.x, rigid.velocity.y * 0.5f);
             coyoteTimeCounter = 0f;
         }
