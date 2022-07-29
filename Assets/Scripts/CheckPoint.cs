@@ -17,7 +17,7 @@ public class CheckPoint : MonoBehaviour
         if (collision.gameObject.name == "player")
         {
             fallDetector.CheckPoint = gameObject.transform;
-            animator.SetTrigger("Move");
+            //animator.SetTrigger("Move");
         }
 
     }
