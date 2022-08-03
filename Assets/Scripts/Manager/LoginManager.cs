@@ -22,29 +22,12 @@ public class LoginManager : MonoBehaviour
     public Button SettingButton;
     public Button NewGameButton;
 
-    public GameObject mainMenuObject;
-    public GameObject logoObject;
-    public GameObject optionObject;
 
     public void Start()
     {
         //저장파일이 있다면 continuebutton setactive true
         NewGameButton.onClick.AddListener(LoadScene);
         ExitGameButton.onClick.AddListener(OnClickExitGame);
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if(optionObject.activeSelf)
-            {
-                optionObject.SetActive(false);
-                mainMenuObject.SetActive(true);
-                logoObject.SetActive(true);
-            }
-                
-        }
     }
 
     public void LoadScene()

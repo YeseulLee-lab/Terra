@@ -438,9 +438,6 @@ MonoBehaviour:
   ExitGameButton: {fileID: 2065031539}
   SettingButton: {fileID: 1131856068}
   NewGameButton: {fileID: 999554860}
-  mainMenuObject: {fileID: 1996893516}
-  logoObject: {fileID: 820648584}
-  optionObject: {fileID: 447028540}
 --- !u!4 &596322089
 Transform:
   m_ObjectHideFlags: 0
@@ -787,6 +784,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -50
       objectReference: {fileID: 0}
+    - target: {fileID: 3937664840547010573, guid: 050ce762919edb341a9616389f0df9c2,
+        type: 3}
+      propertyPath: logoObject
+      value: 
+      objectReference: {fileID: 820648584}
+    - target: {fileID: 3937664840547010573, guid: 050ce762919edb341a9616389f0df9c2,
+        type: 3}
+      propertyPath: mainMenuObject
+      value: 
+      objectReference: {fileID: 1996893516}
     - target: {fileID: 3937664840547010574, guid: 050ce762919edb341a9616389f0df9c2,
         type: 3}
       propertyPath: m_Pivot.x

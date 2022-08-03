@@ -16,6 +16,10 @@ public class Option : MonoBehaviour
     public Button saveButton;
     public Button quitButton;
     public Button initialButton;
+    public Button cancelButton;
+
+    public GameObject mainMenuObject;
+    public GameObject logoObject;
 
     public GameObject AudioGroup;
 
@@ -33,6 +37,7 @@ public class Option : MonoBehaviour
         audioButton.onClick.AddListener(OnClickAudioButton);
         quitButton.onClick.AddListener(OnClickQuitButton);
         initialButton.onClick.AddListener(InitailizeVolume);
+        cancelButton.onClick.AddListener(OnClickCancelButton);
 
         popUpYesButton.onClick.AddListener(LoadLoginScene);
 
@@ -56,6 +61,17 @@ public class Option : MonoBehaviour
         sfxVolumeNum.text = Mathf.CeilToInt(sfxSlider.value * 10).ToString();
 
         EventSystem.current.SetSelectedGameObject(audioButton.gameObject);
+    }
+
+    public void Update()
+    {
+        if(MapManager.instance.mapState == MapManager.MapState.Login)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                OnClickCancelButton();
+            }
+        }
     }
 
     public void OnClickQuitButton()
@@ -98,6 +114,19 @@ public class Option : MonoBehaviour
     {
         popUpObject.SetActive(false);
         AudioGroup.SetActive(true);
+    }
+
+    public void OnClickCancelButton()
+    {
+        if (gameObject.activeSelf)
+        {
+            gameObject.SetActive(false);
+            if (MapManager.instance.mapState == MapManager.MapState.Login)
+            {
+                mainMenuObject.SetActive(true);
+                logoObject.SetActive(true);
+            }
+        }
     }
 
     public void ChangeMasterVolumeNum(float value)
