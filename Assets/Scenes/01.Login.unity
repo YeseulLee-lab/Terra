@@ -2217,6 +2217,8 @@ MonoBehaviour:
   soundGroups:
   - groupID: jump
     audioClip: {fileID: 8300000, guid: 57d901616c9d2804eb7f6eb83e42d87f, type: 3}
+  - groupID: jump2
+    audioClip: {fileID: 8300000, guid: 57d901616c9d2804eb7f6eb83e42d87f, type: 3}
 --- !u!114 &1675974848
 MonoBehaviour:
   m_ObjectHideFlags: 0

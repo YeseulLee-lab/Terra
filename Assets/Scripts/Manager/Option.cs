@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class Option : MonoBehaviour
 {
@@ -22,6 +23,10 @@ public class Option : MonoBehaviour
     public Text popUpText;
     public Button popUpYesButton;
 
+    public TextMeshProUGUI masterVolumeNum;
+    public TextMeshProUGUI bgmVolumeNum;
+    public TextMeshProUGUI sfxVolumeNum;
+
     private void Start()
     {
         //세이브 버튼 addlistener 추가해야함.
@@ -31,13 +36,24 @@ public class Option : MonoBehaviour
 
         popUpYesButton.onClick.AddListener(LoadLoginScene);
 
+        //일반 볼륨
         masterSlider.onValueChanged.AddListener(SetMasterVolume);
+        masterSlider.onValueChanged.AddListener(ChangeMasterVolumeNum);
+        //배경음
         bgmSlider.onValueChanged.AddListener(SetBgmVolume);
+        bgmSlider.onValueChanged.AddListener(ChangeBgmVolumeNum);
+        //효과음
         sfxSlider.onValueChanged.AddListener(SetSfxVolume);
+        sfxSlider.onValueChanged.AddListener(ChangeSfxVolumeNum);
 
         masterSlider.value = AudioManager.instance.masterVolumePercent;
+        masterVolumeNum.text = Mathf.CeilToInt(masterSlider.value * 10).ToString();
+
         bgmSlider.value = AudioManager.instance.bgmVolumePercent;
+        bgmVolumeNum.text = Mathf.CeilToInt(bgmSlider.value * 10).ToString();
+
         sfxSlider.value = AudioManager.instance.sfxVolumePercent;
+        sfxVolumeNum.text = Mathf.CeilToInt(sfxSlider.value * 10).ToString();
 
         EventSystem.current.SetSelectedGameObject(audioButton.gameObject);
     }
@@ -73,14 +89,29 @@ public class Option : MonoBehaviour
 
     public void InitailizeVolume()
     {
-        masterSlider.value = 5;
-        bgmSlider.value = 5;
-        sfxSlider.value = 5;
+        masterSlider.value = 0.5f;
+        bgmSlider.value = 0.5f;
+        sfxSlider.value = 0.5f;
     }
 
     public void OnClickAudioButton()
     {
         popUpObject.SetActive(false);
         AudioGroup.SetActive(true);
+    }
+
+    public void ChangeMasterVolumeNum(float value)
+    {
+        masterVolumeNum.text =  Mathf.CeilToInt(value*10).ToString();
+    }
+
+    public void ChangeBgmVolumeNum(float value)
+    {
+        bgmVolumeNum.text = Mathf.CeilToInt(value * 10).ToString();
+    }
+
+    public void ChangeSfxVolumeNum(float value)
+    {
+        sfxVolumeNum.text = Mathf.CeilToInt(value * 10).ToString();
     }
 }
