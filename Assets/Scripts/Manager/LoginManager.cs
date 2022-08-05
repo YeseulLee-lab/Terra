@@ -22,22 +22,33 @@ public class LoginManager : MonoBehaviour
     public Button SettingButton;
     public Button NewGameButton;
 
+    public GameObject optionObject;
+
 
     public void Start()
     {
         //저장파일이 있다면 continuebutton setactive true
         NewGameButton.onClick.AddListener(LoadScene);
+        SettingButton.onClick.AddListener(OnClickSettingButton);
         ExitGameButton.onClick.AddListener(OnClickExitGame);
     }
 
     public void LoadScene()
     {
+        AudioManager.instance.PlaySound("ui_04");
         SceneManager.LoadScene("02.Map");
         MapManager.instance.mapState = MapManager.MapState.Forest;
     }
 
     public void OnClickExitGame()
     {
+        AudioManager.instance.PlaySound("ui_04");
         Application.Quit();
+    }
+
+    public void OnClickSettingButton()
+    {
+        AudioManager.instance.PlaySound("ui_04");
+        optionObject.SetActive(true);
     }
 }

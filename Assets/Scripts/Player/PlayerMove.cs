@@ -50,7 +50,7 @@ public class PlayerMove : MonoBehaviour
 
         if(coyoteTimeCounter > 0f && Input.GetButtonDown("Jump"))
         {
-            AudioManager.instance.PlaySound("jump");
+            AudioManager.instance.PlaySound("jump_01");
             rigid.velocity = Vector2.up * jumpPower;
             //jumpTimeCounter = jumpTime;
         }
@@ -95,7 +95,6 @@ public class PlayerMove : MonoBehaviour
                 Flip();
             }
         }
-        
     }
 
     void Flip()
@@ -141,6 +140,9 @@ public class PlayerMove : MonoBehaviour
         Vector2 knockBack = new Vector2(dir, 1)*7;
         rigid.AddForce(knockBack, ForceMode2D.Impulse);
         DamageFlash();
+        //부딪히면 나는 소리
+        AudioManager.instance.PlaySound("warn_01");
+
         isKnockback = true;
         HeartsHealthVisual.heartHealthSystemStatic.Damage(damageAmount);
 

@@ -69,6 +69,7 @@ public class Option : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                AudioManager.instance.PlaySound("ui_02");
                 OnClickCancelButton();
             }
         }
@@ -123,8 +124,16 @@ public class Option : MonoBehaviour
             gameObject.SetActive(false);
             if (MapManager.instance.mapState == MapManager.MapState.Login)
             {
+                AudioManager.instance.PlaySound("ui_02");
                 mainMenuObject.SetActive(true);
                 logoObject.SetActive(true);
+            }
+            else
+            {
+                if(ControlManager.instance != null)
+                {
+                    ControlManager.instance.Resume();
+                }    
             }
         }
     }

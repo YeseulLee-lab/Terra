@@ -438,6 +438,7 @@ MonoBehaviour:
   ExitGameButton: {fileID: 2065031539}
   SettingButton: {fileID: 1131856068}
   NewGameButton: {fileID: 999554860}
+  optionObject: {fileID: 447028540}
 --- !u!4 &596322089
 Transform:
   m_ObjectHideFlags: 0
@@ -2222,10 +2223,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundGroups:
-  - groupID: jump
+  - groupID: jump_01
     audioClip: {fileID: 8300000, guid: 57d901616c9d2804eb7f6eb83e42d87f, type: 3}
-  - groupID: jump2
-    audioClip: {fileID: 8300000, guid: 57d901616c9d2804eb7f6eb83e42d87f, type: 3}
+  - groupID: jump_02
+    audioClip: {fileID: 8300000, guid: 41b630407cf875543a87663dd508b7f0, type: 3}
+  - groupID: warn_01
+    audioClip: {fileID: 8300000, guid: d791805a688f53d41ab16f1e54845ae5, type: 3}
+  - groupID: life_01
+    audioClip: {fileID: 8300000, guid: cdbb6952092edc240a75d05562f2c984, type: 3}
+  - groupID: life_02
+    audioClip: {fileID: 8300000, guid: 935b8025a7d7b9c488f78060f713cb22, type: 3}
+  - groupID: item_01
+    audioClip: {fileID: 8300000, guid: 5769e6e2b4bb9e141946d6a534a27943, type: 3}
+  - groupID: item_02
+    audioClip: {fileID: 8300000, guid: f7043c97fd09547488c61a3b2f067618, type: 3}
+  - groupID: item_03
+    audioClip: {fileID: 8300000, guid: ae313b9045e78c14bbf4518e18f8b587, type: 3}
+  - groupID: item_04
+    audioClip: {fileID: 8300000, guid: 7ac8a67bf575cb244a0d7f9e1630b25a, type: 3}
+  - groupID: block_01
+    audioClip: {fileID: 8300000, guid: 5769e6e2b4bb9e141946d6a534a27943, type: 3}
+  - groupID: stage_in_01
+    audioClip: {fileID: 8300000, guid: 6bd3a8d92949bf64d858325bdc1e8707, type: 3}
+  - groupID: stage_clear_01
+    audioClip: {fileID: 8300000, guid: b10bcbc00f8e1a14d83a1fbf05a43dcc, type: 3}
+  - groupID: ui_01
+    audioClip: {fileID: 8300000, guid: 5afbf52b56ee9c04d97902053e00a9aa, type: 3}
+  - groupID: ui_02
+    audioClip: {fileID: 8300000, guid: f941fa3050310874cb810b2e70f79c64, type: 3}
+  - groupID: ui_03
+    audioClip: {fileID: 8300000, guid: a639e97aa9c1daa4283487871c053b1a, type: 3}
+  - groupID: ui_04
+    audioClip: {fileID: 8300000, guid: afefafd753c973c45a01c69bd582b9d4, type: 3}
 --- !u!114 &1675974848
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -52,6 +52,7 @@ public class HeartsHealthVisual : MonoBehaviour
     private void HeartHealthSystem_OnDead(object sender, System.EventArgs e)
     {
         Debug.Log("player is dead");
+        AudioManager.instance.PlaySound("life_02");
     }
 
     private void HeartHealthSystem_OnHealed(object sender, System.EventArgs e)

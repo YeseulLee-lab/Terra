@@ -16,6 +16,7 @@ public class ButtonHover : MonoBehaviour
 
     public void MouseHoverOn()
     {
+        AudioManager.instance.PlaySound("ui_03");
         hoverImg.gameObject.SetActive(true);
         //buttonText.color = Color.white;
         buttonText.fontStyle = FontStyle.Bold;

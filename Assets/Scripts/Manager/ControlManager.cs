@@ -46,8 +46,9 @@ public class ControlManager : MonoBehaviour
         }
     }
 
-    void Resume()
+    public void Resume()
     {
+        AudioManager.instance.PlaySound("ui_02");
         OptionObject.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -55,6 +56,7 @@ public class ControlManager : MonoBehaviour
 
     void Pause()
     {
+        AudioManager.instance.PlaySound("ui_01");
         OptionObject.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
