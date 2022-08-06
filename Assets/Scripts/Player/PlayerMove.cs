@@ -125,6 +125,14 @@ public class PlayerMove : MonoBehaviour
         return raycastHit.collider != null;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.layer == 10)
+        {
+            AudioManager.instance.PlaySound("jump_02");
+        }
+    }
+
     public void DamageFlash()
     {
         materialTintColor = new Color(1, 1, 1, 0.5f);
