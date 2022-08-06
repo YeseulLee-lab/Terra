@@ -15,6 +15,7 @@ public class PlayerMove : MonoBehaviour
     Rigidbody2D rigid;    
     bool facingRight = true;
     bool isKnockback = false;
+    bool isJumping = false;
 
     private CapsuleCollider2D capsuleCollider2D;
     private SpriteRenderer spriteRenderer;
@@ -47,10 +48,10 @@ public class PlayerMove : MonoBehaviour
         }
 
         //Jump
-
         if(coyoteTimeCounter > 0f && Input.GetButtonDown("Jump"))
         {
             AudioManager.instance.PlaySound("jump_01");
+            isJumping = true;
             rigid.velocity = Vector2.up * jumpPower;
             //jumpTimeCounter = jumpTime;
         }
@@ -127,9 +128,10 @@ public class PlayerMove : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer == 10)
+        if(collision.gameObject.layer == 10 && isJumping)
         {
             AudioManager.instance.PlaySound("jump_02");
+            isJumping = false;
         }
     }
 
@@ -140,7 +142,6 @@ public class PlayerMove : MonoBehaviour
 
         isHurting = true;
     }
-
 
     public void DamageKnockBack(Vector3 targetPos, int damageAmount)
     {
