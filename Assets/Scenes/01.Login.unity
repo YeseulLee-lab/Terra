@@ -2255,6 +2255,10 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: a639e97aa9c1daa4283487871c053b1a, type: 3}
   - groupID: ui_04
     audioClip: {fileID: 8300000, guid: afefafd753c973c45a01c69bd582b9d4, type: 3}
+  - groupID: amb_wind_01
+    audioClip: {fileID: 8300000, guid: cf9f9e0882e5ee746a915e96720c9e0e, type: 3}
+  - groupID: amb_wind_02
+    audioClip: {fileID: 8300000, guid: b3ff32a89b457ef47bd8538b2468f548, type: 3}
 --- !u!114 &1675974848
 MonoBehaviour:
   m_ObjectHideFlags: 0

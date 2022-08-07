@@ -98,6 +98,8 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+
+
     void Flip()
     {
         Vector3 currentScale = gameObject.transform.localScale;

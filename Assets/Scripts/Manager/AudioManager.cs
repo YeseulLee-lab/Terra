@@ -17,7 +17,7 @@ public class AudioManager : MonoBehaviour
     public float bgmVolumePercent { get; private set; }
     public float masterVolumePercent { get; private set; }
 
-    AudioSource sfxSource;
+    AudioSource[] sfxSources;
     AudioSource musicSources;
     int activeMusicSourceIndex;
 
@@ -40,9 +40,14 @@ public class AudioManager : MonoBehaviour
             musicSources = newMusicSource.AddComponent<AudioSource>();
             newMusicSource.transform.parent = transform;
 
-            GameObject newSfxSource = new GameObject("sfx source");
-            sfxSource = newSfxSource.AddComponent<AudioSource>();
-            newSfxSource.transform.parent = transform;
+            sfxSources = new AudioSource[2];
+            for(int i = 0; i < 2; i++)
+            {
+                GameObject newSfxSource = new GameObject("sfx source " + (i + 1));
+                sfxSources[i] = newSfxSource.AddComponent<AudioSource>();
+                newSfxSource.transform.parent = transform;
+            }
+            
 
             masterVolumePercent = PlayerPrefs.GetFloat("master vol", 1);
             bgmVolumePercent =  PlayerPrefs.GetFloat("bgm vol", 1);
@@ -68,7 +73,8 @@ public class AudioManager : MonoBehaviour
 
 
         musicSources.volume = bgmVolumePercent * masterVolumePercent;
-        sfxSource.volume = sfxVolumePercent * masterVolumePercent;
+        sfxSources[0].volume = sfxVolumePercent * masterVolumePercent;
+        sfxSources[1].volume = sfxVolumePercent * masterVolumePercent;
 
         PlayerPrefs.SetFloat("master vol", masterVolumePercent);
         PlayerPrefs.SetFloat("bgm vol", bgmVolumePercent);
@@ -86,10 +92,19 @@ public class AudioManager : MonoBehaviour
         StartCoroutine(AnimateMusicCrossfade(fadeDuration));
     }
 
-    //이름으로 라이브러리에 있는 효과음 찾기 --> 효과음 제작되면 라이브러리에 넣기
     public void PlaySound(string soundName)
     {
-        sfxSource.PlayOneShot(library.GetClipFromName(soundName), sfxVolumePercent * masterVolumePercent);
+        sfxSources[0].PlayOneShot(library.GetClipFromName(soundName), sfxVolumePercent * masterVolumePercent);
+    }
+
+    public void PlayAmbientSound(string soundName)
+    {
+        sfxSources[1].PlayOneShot(library.GetClipFromName(soundName), sfxVolumePercent * masterVolumePercent);
+    }
+
+    public void StopSound()
+    {
+        sfxSources[1].Stop();
     }
 
     IEnumerator AnimateMusicCrossfade(float duration)
