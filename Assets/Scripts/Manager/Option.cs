@@ -87,6 +87,12 @@ public class Option : MonoBehaviour
         Time.timeScale = 1;
         MapManager.instance.mapState = MapManager.MapState.Login;
         SceneManager.LoadScene("01.Login");
+
+        //임시: 아이템 개수 초기화
+        for(int i = 0; i< Inventory.instance.itemObejcts.Count; i++)
+        {
+            Inventory.instance.itemObejcts[i].amount = 0;
+        }
     }
 
     public void SetBgmVolume(float value)

@@ -52,7 +52,7 @@ public class Inventory : MonoBehaviour
             if(!itemAlreadyInInven)
             {
                 itemObejcts.Add(itemObject);
-                //itemObject.amount ++;
+                itemObject.amount ++;
             }
 
             if (OnItemChangedCallBack != null)
