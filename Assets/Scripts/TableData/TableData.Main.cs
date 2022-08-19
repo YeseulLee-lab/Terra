@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainTableData : TableData
+public partial class TableData : MonoBehaviour
 {
-    class MainData
+    public class MainData
     {
         public string string_id;
         public int string_type;
@@ -20,12 +20,13 @@ public class MainTableData : TableData
 
     Dictionary<string, List<MainData>> mainDataDic = new Dictionary<string, List<MainData>>();
 
-    void Awake()
+    void MainDataInit()
     {
         List<Dictionary<string,object>> data = CSVReader.Read("main_table");
 
         for(int i = 0; i < data.Count; i++)
         {
+            //아이디가 존재하지 않을 경우에 추가해준다. 중첩 방지
             if (!mainDataDic.ContainsKey(data[i]["communication_id"].ToString()))
                 mainDataDic.Add(data[i]["communication_id"].ToString(), new List<MainData>());
             for(int j = 0; j< mainDataDic.Count; j++)
@@ -45,4 +46,11 @@ public class MainTableData : TableData
         }
     }
 
+    //아이디에 따른 maindata의 list 형식을 반환
+    public List<MainData> GetMainDataList(string communication_id)
+    {
+        List<MainData> list = new List<MainData>();
+        list = mainDataDic[communication_id];
+        return list;
+    }
 }

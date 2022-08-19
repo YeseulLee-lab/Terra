@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StringTableData : TableData
+public partial class TableData : MonoBehaviour
 {
     class StringData
     {
@@ -11,7 +11,7 @@ public class StringTableData : TableData
 
     Dictionary<string, List<StringData>> stringDataDic = new Dictionary<string, List<StringData>>();
 
-    void Awake()
+    void StringDataInit()
     {
         List<Dictionary<string, object>> data = CSVReader.Read("string_table");
 
