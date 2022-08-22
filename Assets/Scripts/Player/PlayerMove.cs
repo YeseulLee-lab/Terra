@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private LayerMask platformLayerMask = default;
+    [SerializeField] private LayerMask NPCLayerMask = default;
     [SerializeField] private float gravityScale;
     public float fallGravityMultiflier;
 
@@ -50,7 +51,8 @@ public class PlayerMove : MonoBehaviour
         //Jump
         if(coyoteTimeCounter > 0f && Input.GetButtonDown("Jump"))
         {
-            AudioManager.instance.PlaySound("jump_01");
+            if(AudioManager.instance != null)
+                AudioManager.instance.PlaySound("jump_01");
             isJumping = true;
             rigid.velocity = Vector2.up * jumpPower;
             //jumpTimeCounter = jumpTime;
@@ -66,6 +68,11 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetButtonUp("Horizontal"))
         {
             rigid.velocity = new Vector2(0, rigid.velocity.y);
+        }
+
+        if(Input.GetButtonDown("TalktoNpc"))
+        {
+            NPCDialogue();
         }
     }
 
@@ -132,7 +139,8 @@ public class PlayerMove : MonoBehaviour
     {
         if(collision.gameObject.layer == 10 && isJumping)
         {
-            AudioManager.instance.PlaySound("jump_02");
+            if (AudioManager.instance != null)
+                AudioManager.instance.PlaySound("jump_02");
             isJumping = false;
         }
     }
@@ -152,7 +160,8 @@ public class PlayerMove : MonoBehaviour
         rigid.AddForce(knockBack, ForceMode2D.Impulse);
         DamageFlash();
         //부딪히면 나는 소리
-        AudioManager.instance.PlaySound("warn_01");
+        if (AudioManager.instance != null)
+            AudioManager.instance.PlaySound("warn_01");
 
         isKnockback = true;
         HeartsHealthVisual.heartHealthSystemStatic.Damage(damageAmount);
@@ -171,5 +180,17 @@ public class PlayerMove : MonoBehaviour
             spriteRenderer.material.SetColor("_Color", materialTintColor);
             isHurting = false;
         }
+    }
+
+    void NPCDialogue()
+    {
+        RaycastHit2D raycastHit = Physics2D.Raycast(capsuleCollider2D.bounds.center, Vector2.right, capsuleCollider2D.bounds.extents.y * 2f, NPCLayerMask);
+        Color rayColor = Color.red;
+        if(raycastHit.collider != null)
+        {
+            Debug.Log("NPC감지");
+            raycastHit.collider.GetComponent<NpcAction>().ShowDialogueUIObject();
+        }
+        Debug.DrawRay(capsuleCollider2D.bounds.center, Vector2.right * (capsuleCollider2D.bounds.extents.y) * 2f, rayColor);
     }
 }
