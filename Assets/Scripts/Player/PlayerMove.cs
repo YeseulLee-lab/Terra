@@ -70,7 +70,7 @@ public class PlayerMove : MonoBehaviour
             rigid.velocity = new Vector2(0, rigid.velocity.y);
         }
 
-        if(Input.GetButtonDown("TalktoNpc"))
+        if (Input.GetButtonDown("TalktoNpc"))
         {
             NPCDialogue();
         }
@@ -184,13 +184,18 @@ public class PlayerMove : MonoBehaviour
 
     void NPCDialogue()
     {
-        RaycastHit2D raycastHit = Physics2D.Raycast(capsuleCollider2D.bounds.center, Vector2.right, capsuleCollider2D.bounds.extents.y * 2f, NPCLayerMask);
+        float x;
+        if (facingRight)
+             x = 1f;
+        else
+            x = -1f;
+        RaycastHit2D raycastHit = Physics2D.Raycast(capsuleCollider2D.bounds.center, new Vector2(x, 0), capsuleCollider2D.bounds.extents.y * 2f, NPCLayerMask);
         Color rayColor = Color.red;
         if(raycastHit.collider != null)
         {
             Debug.Log("NPC감지");
             raycastHit.collider.GetComponent<NpcAction>().ShowDialogueUIObject();
         }
-        Debug.DrawRay(capsuleCollider2D.bounds.center, Vector2.right * (capsuleCollider2D.bounds.extents.y) * 2f, rayColor);
+        Debug.DrawRay(capsuleCollider2D.bounds.center, new Vector2(x, 0) * (capsuleCollider2D.bounds.extents.y) * 2f, rayColor);
     }
 }
