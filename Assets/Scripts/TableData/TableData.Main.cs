@@ -46,6 +46,11 @@ public partial class TableData : MonoBehaviour
         }
     }
 
+    public Dictionary<string, List<MainData>> GetMainDataDic()
+    {
+        return mainDataDic;
+    }
+
     //아이디에 따른 maindata의 list 형식을 반환
     public List<MainData> GetMainDataList(string communication_id)
     {
