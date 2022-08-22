@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class CheckPoint : MonoBehaviour
 {
-    [SerializeField] private FallDetector fallDetector;
+    private FallDetector fallDetector;
     private Animator animator;
     private bool isChecked = false;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        fallDetector = FindObjectOfType<FallDetector>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(!isChecked)
         {
-            AudioManager.instance.PlaySound("stage_clear_01");
+            if(AudioManager.instance != null)
+                AudioManager.instance.PlaySound("stage_clear_01");
             if (collision.gameObject.name == "player")
             {
                 fallDetector.CheckPoint = gameObject.transform;

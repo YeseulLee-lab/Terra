@@ -22,7 +22,8 @@ public class FallDetector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {   
-        AudioManager.instance.PlaySound("life_01");
+        if(AudioManager.instance != null)
+            AudioManager.instance.PlaySound("life_01");
         PlayerMove player = collider.gameObject.GetComponent<PlayerMove>();
         if(!player.isHurting)
         {
