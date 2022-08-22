@@ -11,7 +11,8 @@ public class Item : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //TODO yeseul:아이템 얻을시 나는 소리: 종류마다 다르게 해야함
-        AudioManager.instance.PlaySound("item_01");
+        if (AudioManager.instance != null)
+            AudioManager.instance.PlaySound("item_01");
         if (collision.tag == "Player")
         {
             bool wasPickedUp = Inventory.instance.Add(skillItemObject, amount);

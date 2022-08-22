@@ -116,8 +116,12 @@ public class Inventory : MonoBehaviour
             }
         }
 
-        if (Inventory.instance.OnItemChangedCallBack != null)
-            Inventory.instance.OnItemChangedCallBack.Invoke();
+        if(instance != null)
+        {
+            if (Inventory.instance.OnItemChangedCallBack != null)
+                Inventory.instance.OnItemChangedCallBack.Invoke();
+        }
+        
     }
 
     public void UseLightItem()
