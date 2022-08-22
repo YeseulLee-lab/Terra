@@ -45,3 +45,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Checkpoint
+    uniqueID: 2498730825
+    locked: 0
+  - name: Platform
+    uniqueID: 1131731505
+    locked: 0
+  - name: NPC
+    uniqueID: 1822420155
+    locked: 0
+  - name: Player
+    uniqueID: 297504287
+    locked: 0
